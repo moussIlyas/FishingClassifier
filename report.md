@@ -1,6 +1,8 @@
 # Lab 04 : Phish or Legit? Report
 
-![App screenshot](img.png)
+![Legit example](img.png)
+
+![Phishing example](img_1.png)
 
 ## Purpose
 
