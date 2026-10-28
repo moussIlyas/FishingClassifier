@@ -25,6 +25,8 @@ Then open the URL printed in the terminal (usually http://localhost:8501).
 
 - `app.py` — Streamlit UI
 - `src/pipeline.py` — data loading, model building, prediction, explanations
+- `src/evaluate.py` — metrics, confusion matrix, calibration, failure cases
 - `data/messages.csv` — synthetic dataset
 - `data/make_data.py` — dataset generator
+- `report.md` — detailed lab report (metrics, thresholds, features, failures)
 """
