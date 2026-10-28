@@ -70,10 +70,20 @@ def predict(pipe, text: str):
     return ("phish" if score >= 0.5 else "legit"), score
 
 
+def _base_clf(pipe):
+    """Unwrap a (possibly calibrated) classifier to its underlying estimator."""
+    clf = pipe.named_steps["clf"]
+    if hasattr(clf, "calibrated_classifiers_") and clf.calibrated_classifiers_:
+        clf = clf.calibrated_classifiers_[0].estimator
+    return clf
+
+
 def contributions(pipe, text: str):
     """Per-feature contribution to the log-odds of 'phish' for a LOGISTIC REGRESSION pipeline:
     contribution = tf-idf value x coefficient.  Positive -> pushes toward phish."""
-    vec, clf = pipe.named_steps["tfidf"], pipe.named_steps["clf"]
+    vec, clf = pipe.named_steps["tfidf"], _base_clf(pipe)
+    if not hasattr(clf, "coef_"):
+        return {}
     X = vec.transform([text])
     names = vec.get_feature_names_out()
     row = X.tocoo()

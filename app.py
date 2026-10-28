@@ -21,7 +21,7 @@ with st.sidebar:
 def get_model():
     df = load_data()
     Xtr, _, ytr, _ = split(df)
-    return make_pipeline("lr").fit(Xtr, ytr), make_pipeline("lr_cal").fit(Xtr, ytr)
+    return make_pipeline("nb_cal").fit(Xtr, ytr), make_pipeline("lr_cal").fit(Xtr, ytr)
 
 
 model, model_cal = get_model()
@@ -43,7 +43,7 @@ if st.button("Classify", type="primary"):
         st.caption(f"Calibrated score (sigmoid calibration on training data): {cal_score:.2f}. "
                    "Scores are only meaningful as probabilities if calibration was checked - see the lab report.")
 
-        weights = word_weights(model, text)
+        weights = word_weights(model_cal, text)
         parts = []
         for tok in re.findall(r"\w+|\W+", text):
             w = weights.get(tok.lower(), 0.0)
@@ -53,5 +53,5 @@ if st.button("Classify", type="primary"):
                 parts.append(tok)
         st.markdown("".join(parts))
         st.caption("red = pushes toward phishing, green = pushes toward legit (words with a strong weight only)")
-        top = list(contributions(model, text).items())[:6]
+        top = list(contributions(model_cal, text).items())[:6]
         st.table({"feature": [t for t, _ in top], "contribution to log-odds": [round(v, 2) for _, v in top]})
