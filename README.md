@@ -2,6 +2,8 @@
 
 A small Streamlit app that classifies a pasted message as **phishing-style** or **legit** using a TF-IDF + logistic regression model trained on a synthetic dataset of fictional-brand messages.
 
+Author: Moussnaoui Ilyas (SDIA)
+
 ![Legit example](img.png)
 
 ![Phishing example](img_1.png)

@@ -1,5 +1,7 @@
 # Lab 04 : Phish or Legit? Report
 
+Author: Moussnaoui Ilyas (SDIA)
+
 ![Legit example](img.png)
 
 ![Phishing example](img_1.png)
