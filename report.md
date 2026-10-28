@@ -1,5 +1,7 @@
 # Lab 04 — Phish or Legit? Report
 
+![App screenshot](img.png)
+
 ## Purpose
 
 This project builds a text classifier that decides whether a short message is
