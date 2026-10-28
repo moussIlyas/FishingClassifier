@@ -1,4 +1,4 @@
-# Lab 04 — Phish or Legit? Report
+# Lab 04 : Phish or Legit? Report
 
 ![App screenshot](img.png)
 
@@ -7,12 +7,12 @@
 This project builds a text classifier that decides whether a short message is
 **phishing-style** or **legit**, using a synthetic dataset of fictional-brand
 messages. It is an educational lab (not a production detector): the goal is to
-show the full pipeline — data, features, model, evaluation, calibration, and
-explainability — and why accuracy alone is misleading on imbalanced data.
+show the full pipeline - data, features, model, evaluation, calibration, and
+explainability - and why accuracy alone is misleading on imbalanced data.
 
 ## Dataset
 
-- `data/messages.csv` — 2000 synthetic messages, 20% phishing / 80% legit.
+- `data/messages.csv` - 2000 synthetic messages, 20% phishing / 80% legit.
 - Fictional brands (Northbank, ParcelGo, Civic Savings, …); URLs, money amounts
   and numbers are normalised to placeholder tokens (`urltok`, `moneytok`, `numtok`).
 - Stratified split: 1500 train / 500 test, keeping the 20% phishing rate in both.
@@ -35,7 +35,7 @@ explainability — and why accuracy alone is misleading on imbalanced data.
 | NB + calibration | 0.694 | 0.750 | 0.721 | 0.884 | 0.086 | 0.030 |
 | LR + char n-grams | 0.777 | 0.730 | 0.753 | 0.904 | 0.064 | 0.050 |
 
-Majority-class baseline accuracy (always "legit"): **80.0%** — which is why
+Majority-class baseline accuracy (always "legit"): **80.0%** - which is why
 accuracy alone is misleading; F1 / precision / recall on the phish class matter.
 
 ### Confusion matrix (Logistic Regression)
@@ -81,7 +81,7 @@ Brier score and ECE show how well scores behave as probabilities. Logistic
 Regression (ECE 0.035) is better calibrated than Naive Bayes (ECE 0.089);
 sigmoid calibration improves NB further. The app shows both the raw model score
 and a sigmoid-calibrated score. Scores are only meaningful as probabilities if
-calibration was checked — see the reliability diagram in `results/phish_results.png`.
+calibration was checked - see the reliability diagram in `results/phish_results.png`.
 
 ## Explainability in the app
 
@@ -100,12 +100,12 @@ python -m src.evaluate        # metrics + plots in results/
 
 ## Files
 
-- `app.py` — Streamlit UI
-- `src/pipeline.py` — data loading, model building, prediction, explanations
-- `src/evaluate.py` — metrics, confusion matrix, calibration, failure cases
-- `data/messages.csv` — synthetic dataset
-- `data/make_data.py` — dataset generator
-- `results/` — metrics.json, failures.txt, phish_results.png
+- `app.py` - Streamlit UI
+- `src/pipeline.py` - data loading, model building, prediction, explanations
+- `src/evaluate.py` - metrics, confusion matrix, calibration, failure cases
+- `data/messages.csv` - synthetic dataset
+- `data/make_data.py` - dataset generator
+- `results/` - metrics.json, failures.txt, phish_results.png
 
 ## Limitations
 
